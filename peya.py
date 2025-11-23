@@ -7,6 +7,8 @@ import wikipedia
 import webbrowser
 import random
 import subprocess
+import google.generativeai as genai
+from dotenv import load_dotenv
 
 #Logging configuration
 LOG_DIR="logs"
@@ -80,6 +82,23 @@ def greeting():
     speak("I am Peya. How can I help you today?")
     
 greeting()
+
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+def generate_response(user_input):
+    """_summary_
+        This function generates a response using Google Generative AI
+    Args:
+        prompt (_type_): _description_
+    Returns:
+        _type_: _description_
+    """
+    genai.configure(api_key=GEMINI_API_KEY)
+    model=genai.GenerativeModel("gemini-2.5-flash")
+    prompt=f"Your name is PEYA.You act like Peya.Answar the provided question in short, Qustion: {user_input}"
+    response=model.generate_content(prompt)
+    return response.text
   
 while True:
     quiry=takeCommand().lower()
@@ -176,5 +195,6 @@ while True:
         exit()
     #Default response for unsupported questions
     else:
-        speak("I am sorry, I can only respond to questions about my name right now.")
-        logging.info("User asked an unsupported question.")
+        response=generate_response(quiry)
+        speak(response)
+        logging.info("Generated response for user query.")

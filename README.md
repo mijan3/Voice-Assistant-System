@@ -27,7 +27,10 @@ Open Calendar(Google Calendar via Browser)
 
 Tell jokes and respond to basic small talk
 
+GEMINI AI integration for dynamic responses
+
 Exit gracefully with a voice command
+
 
 
 ## Requiremtns 
@@ -54,7 +57,13 @@ pip install -r requirments.txt
 ```bash
 python peya.py
 ```
-
+## For exe file conversion
+```bash
+pip install pyinstaller
+```
+```bash
+pyinstaller --onefile peya.py
+```
 ## Author
 **Mijanur Rahman**
 - GitHub: [Mijanur-Rahman](https://github.com/mijan3)
