@@ -29,6 +29,8 @@ Tell jokes and respond to basic small talk
 
 GEMINI AI integration for dynamic responses
 
+Take Screenshots on command
+
 Exit gracefully with a voice command
 
 

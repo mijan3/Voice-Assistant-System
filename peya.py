@@ -8,6 +8,7 @@ import webbrowser
 import random
 import subprocess
 import google.generativeai as genai
+import pyautogui
 from dotenv import load_dotenv
 
 #Logging configuration
@@ -117,6 +118,20 @@ while True:
     elif 'who made you' in quiry or 'who created you' in quiry:
         speak("I was created by an amazing developer and his name is Mijanur Rahman.")
         logging.info("User asked about the creator of the assistant.")
+        # Take Screenshot
+    elif 'take screenshot' in quiry or 'screenshot' in quiry:
+        SCREENSHOT_DIR = "screenshots"
+        os.makedirs(SCREENSHOT_DIR, exist_ok=True)
+
+        file_name = f"screenshot_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+        save_path = os.path.join(SCREENSHOT_DIR, file_name)
+
+        screenshot = pyautogui.screenshot()
+        screenshot.save(save_path)
+
+        speak("Screenshot taken and saved successfully.")
+        logging.info(f"Screenshot saved at {save_path}")
+
     elif 'thank you' in quiry:
         speak("You are welcome, Sir!")
         logging.info("User expressed gratitude.")
@@ -154,6 +169,11 @@ while True:
         webbrowser.open("https://www.facebook.com")
         speak("Opening Facebook")
         logging.info("User requested to open Facebook.")
+    #LinkedIn opening
+    elif 'open linkedin' in quiry:
+        webbrowser.open("https://www.linkedin.com")
+        speak("Opening LinkedIn")
+        logging.info("User requested to open LinkedIn.")
     elif 'joke' in quiry:
         jokes = [
             "Why don't scientists trust atoms? Because they make up everything!",

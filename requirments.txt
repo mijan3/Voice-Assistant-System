@@ -4,3 +4,4 @@ pyaudio
 wikipedia
 google-generativeai
 python-dotenv
+pyautogui
